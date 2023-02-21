@@ -21,7 +21,7 @@ export default function Polychromatic(){
         const res = await axios.get(url);
         const data = await res.data;
         console.log(data);
-        
+
         const caption = data[0].caption;
         const date = data[0].date.split(" ")[0];
 
@@ -48,12 +48,22 @@ export default function Polychromatic(){
         setDate(date);
         setImages(images);
 
-        setImage(images[data].image);
-        setTime(time[data]);
-        setCoords([images[data].coords.lat, images[data].coords.lon]);
+        setImage(images[0].image);
+        setTime(time[0]);
+        setCoords([images[0].coords.lat, images[0].coords.lon]);
         console.log(image);
-        
+
     }
+
+
+    const moveNext = () => {
+        if (data < images.length - 1) {
+          setData(data + 1);
+        } else {
+          setData(0);
+        }
+        console.log(images);
+      };
     
     useEffect(() => {
     getPolychromaticData();
@@ -61,27 +71,13 @@ export default function Polychromatic(){
 
     return (
         <div className={styles.main} style={{backgroundColor:'#0E0E10'}}>
-            {/* <h1>Polychromatic</h1>
-            <Image src={image} alt={image} width={200} height={200}/>
-            <div>{time}</div>
-            <div>{coords[0]}, {coords[1]}</div> */}
+            <h1>Polychromatic</h1>
 
             <Link href='/' style={{boxShadow:'4px 4px 0px rgb(255 255 255)'}} className='w-52 text-center border-4 border-solid border-white p-4 font-bold text-white bg-black'> BACK TO PATENTS </Link>
-
-            {images ? (<div>{images[data].coords.lat}</div>) : (<div>loading</div>)}
-
+            
             <table>
-                {/* <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
-                        <th>Image</th>
-                        <th></th>
-                    </tr>
-                </thead> */}
-                <tbody>
-                <div className={styles.container}> 
+                <thead></thead>
+                <tbody className={styles.container}>
                     {images.map((e, index) => {
                         return (
                             <tr key={index} style={{boxShadow:'8px 8px 0px rgb(255 255 255 / 1)'}} className='flex justify-center items-center flex-col text-white border-solid border-8 border-white p-10 m-8 bg-black hover:shadow-none max-h-full'>
@@ -93,17 +89,9 @@ export default function Polychromatic(){
                                 </div>
                                 <td><Image src={e.image} alt={e.image} style={{boxShadow:'4px 4px 0px rgb(255 255 255 / 1)', borderRadius:'80%'}} className='w-52 h-full object-cover border-4 border-solid border-white
                                 'width={200} height={200}/></td>
-                                <td><button onClick={() => {e
-                                    setImage(image.image);
-                                    setTime(image.time);
-                                    setCoords([image.coords.lat, image.coords.lon]);
-                                    console.log(images[i].image);
-                                    document.body.scrollIntoView();
-                                }}>View</button></td>
                             </tr>
                         )
                     })}
-                </div>
                     
                 </tbody>
             </table>
