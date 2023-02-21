@@ -1,4 +1,4 @@
-## PROJECT DESCRIPTION
+## Project Description
 
 This is a web application powered by [NASA API](https://api.nasa.gov/) , bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
