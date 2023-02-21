@@ -35,26 +35,37 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-          <Link href='/polychromatic'> Polychromatic </Link>
-
+          <Link href='/polychromatic' style={{boxShadow:'4px 4px 0px rgb(0 0 0)'}} className='w-52 text-center border-4 border-solid border-black p-4 font-bold'> POLYCHROMATIC </Link>
+          <div className={styles.container}> 
       {data && data.results.map((tech,index) => {
           return (
-            <div key={index}>
+            <div>
               {
                 tech && tech.map((t, ind) => {
                   if (ind===10) {
                     return (
-                      <Image src={t} alt={t} key={ind} width={100} height={100}/>
+                      <div key={ind} style={{boxShadow:'8px 8px 0px rgb(0 0 0 / 1)'}} className='flex justify-center items-center flex-col border-solid border-8 border-black p-10 m-8 bg-white hover:shadow-none max-h-96'>
+                        <Image style={{boxShadow:'4px 4px 0px rgb(0 0 0 / 1)'}} className='w-52 h-full object-cover border-4 border-solid border-black' src={t} alt={t} key={ind} width={100} height={100}/>
+                        <div className='w-52 h-48'>
+                          <div className="mt-3 text-base font-bold">{tech[1]}</div>
+                          <div className="mt-3 font-semibold">{tech[2]}</div>
+
+                        <div className="flex justify-between flex-row w-full mt-3">
+                          <div className="text-blue-400 text-xs">{tech[5].toUpperCase()}</div>
+                          <div className="text-blue-400 text-xs">{tech[9]}</div>
+                        </div>
+                        </div>
+                      </div>
+
                     )
                   }
               })
-              }
-
-            </div>
+              }</div>
           )
-        })
+        })}
+        </div>
 
-        }
+        
       </main>
     </>
   )
