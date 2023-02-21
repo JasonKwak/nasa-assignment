@@ -17,7 +17,7 @@ TechTransfer / Polychromatic API
 git clone https://github.com/JasonKwak/nasa-assignment.git
 ```
 
-### :three: Install dependencies and run it:
+### :two: Install dependencies and run it:
 
 ```
 npm install
